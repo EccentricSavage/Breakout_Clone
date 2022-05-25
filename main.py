@@ -16,7 +16,6 @@ paddle = Paddle((0, -250))
 ball = Ball()
 interface = Interface()
 bricks = Bricks()
-# scoreboard = Scoreboard()
 screen.update()
 
 #---------- Setup keypresses ------------
@@ -73,7 +72,7 @@ def gamestate():
                         # remove brick (or change coords to out of bounds)
                         brick.goto(1000,1000)
                         # check if all blocks are cleared
-                        if interface.score % 3 == 0:
+                        if interface.score % 96 == 0 and interface.score != 0:
                             # TODO: fix this, delete all objects in the array
                             bricks.reset_array()
                             paddle.reset_paddle((0, -250))
@@ -106,17 +105,7 @@ def gamestate():
             paddle.reset_paddle((0, -250))
             screen.update()
             time.sleep(1)
-
-
-
-
-
-
-
-
-
-
-
+            
 
 # -------------- Start Game ---------
 
@@ -124,31 +113,5 @@ game_is_on = False
 
 if not game_is_on:
     screen.onkeypress(gamestate, "space")
-
-
-#
-#     # Detect collision with wall
-#     if ball.ycor() > 280 or ball.ycor() < -280:
-#         ball.bounce(1, -1)
-#
-#     # Detect collision with paddles
-#     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
-#         ball.bounce(-1, 1)
-#         ball.move_speed *= 0.9
-#
-#     # Check if r_paddle misses
-#     if ball.xcor() > 380:
-#         ball.restart()
-#         scoreboard.l_point()
-#         ball.move_speed = 0.1
-#
-#     # Check if l_paddle misses
-#     elif ball.xcor() < -380:
-#         ball.restart()
-#         scoreboard.r_point()
-#         ball.move_speed = 0.1
-#
-
-
 
 screen.exitonclick()
